@@ -10,10 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".ShoppaApp"
         android:theme="@style/Theme.Shoppa"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.shoppa.app.ui.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Shoppa">

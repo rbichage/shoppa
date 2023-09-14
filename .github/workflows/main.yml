@@ -1,0 +1,54 @@
+name: Build app workflow
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: build-app
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+      - name: Make gradle executable
+        run: chmod +X ./gradlew
+
+      - name: Run Lint Checks
+        run: ./gradlew ktlintcheck --continue
+
+      - name: Build Project
+        run: ./gradlew :app:buildDebug
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Generate Debug APK
+        run: ./gradlew :app:assembleDebug --stacktrace
+
+      - name: Generate Debug bundle
+        run: ./gradlew :app:bundleDebug --stacktrace
+
+      - name: Upload debug apk
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload debug bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug.aab
+          path: app/build/outputs/bundle/debug/app-debug.aab
+
+

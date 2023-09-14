@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -15,3 +16,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Shoppa"
 include(":app")
+include(":core")
+include(":core:design")
+include(":core:networking")
+include(":features")
+include(":features:products")
+include(":core:database")

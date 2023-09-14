@@ -1,70 +1,56 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
+import java.io.ByteArrayOutputStream
+
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
+    id("shoppa.app")
+    id("shoppa.hilt")
+    id("shoppa.app.compose")
+    id("shoppa.app.network")
 }
 
 android {
-    namespace = "com.reuben.shoppa"
-    compileSdk = 34
+    namespace = "com.shoppa.app"
 
     defaultConfig {
-        applicationId = "com.reuben.shoppa"
-        minSdk = 23
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        val version: Int
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        val bytes = ByteArrayOutputStream()
+        project.exec {
+            commandLine = "git rev-list HEAD --count".split(" ")
+            standardOutput = bytes
+        }
+
+        val out = String(bytes.toByteArray()).trim().toInt() + 1
+        version = out
+
+        versionCode = version
+        applicationId = "com.shoppa.app"
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        buildTypes {
+            debug {
+                versionName = "0.0.$version"
+                versionNameSuffix = "-debug"
+                applicationIdSuffix = ".debug"
+            }
+
+            getByName("release") {
+                versionName = "0.0.1"
+            }
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            isReturnDefaultValues = true
         }
     }
 }
 
 dependencies {
-
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
+    implementation(libs.accompanist.ui.controller)
+    implementation(libs.splash.screen)
+    implementation(project(":core:design"))
 }
