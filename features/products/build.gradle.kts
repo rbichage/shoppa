@@ -11,5 +11,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:networking"))
+    implementation(project(":core:data"))
+    implementation(project(":core:database"))
     implementation(libs.material)
 }

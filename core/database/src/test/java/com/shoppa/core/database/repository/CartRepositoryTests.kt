@@ -1,5 +1,6 @@
 package com.shoppa.core.database.repository
 
+import app.cash.turbine.test
 import com.hannesdorfmann.instantiator.InstantiatorConfig
 import com.hannesdorfmann.instantiator.instance
 import com.shoppa.core.database.dao.CartDao
@@ -38,9 +39,19 @@ class CartRepositoryTests {
     @Test
     fun `test inserting and retrieving items`() = runTest {
         coEvery {
-            cartRepository.getAllCartItems()
+            cartDao.getAllCartItems()
         } returns flowOf(cartEntities)
 
         cartRepository.insertCartItem(cartEntities)
+
+        cartRepository.getAllCartItems().test {
+            val list = awaitItem()
+
+            assert(list.size == cartEntities.size)
+            assert(
+                cartEntities.firstOrNull { it.productId == cartEntities.first().productId } != null
+            )
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 }

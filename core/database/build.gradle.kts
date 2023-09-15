@@ -11,4 +11,5 @@ android {
 
 dependencies {
     testImplementation(libs.robolectric)
+    implementation(project(":core:data"))
 }
