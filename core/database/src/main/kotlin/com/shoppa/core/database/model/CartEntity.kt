@@ -8,8 +8,10 @@ import androidx.room.PrimaryKey
 data class CartEntity(
     @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = false) val productId: String,
     @ColumnInfo(name = "name") val productName: String,
+    @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "price") val price: Int,
-    @ColumnInfo(name = "currency") val currencyCode: Int,
+    @ColumnInfo(name = "currency_code") val currencyCode: String,
+    @ColumnInfo(name = "currency_symbol") val currencySymbol: String,
     @ColumnInfo(name = "selected_quantity") val selectedQuantity: Int,
     @ColumnInfo(name = "max_quantity") val maxQuantity: Int,
     @ColumnInfo(name = "image_url") val imageUrl: String,
