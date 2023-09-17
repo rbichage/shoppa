@@ -13,6 +13,9 @@ android {
 dependencies {
     implementation(project(":core:networking"))
     implementation(project(":core:data"))
+    implementation(project(":core:design"))
     implementation(project(":core:database"))
+    implementation(project(":core:navigation"))
+
     implementation(libs.material)
 }

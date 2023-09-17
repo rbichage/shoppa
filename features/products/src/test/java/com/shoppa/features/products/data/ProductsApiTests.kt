@@ -1,5 +1,6 @@
 package com.shoppa.features.products.data
 
+import com.shoppa.features.products.data.api.ProductsApi
 import com.shoppa.features.products.util.failureBody
 import com.shoppa.features.products.util.productsJson
 import com.slack.eithernet.ApiResult

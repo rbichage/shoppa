@@ -6,7 +6,7 @@ coil = "2.4.0"
 kotlin = "1.9.0"
 kotlin-coroutines = "1.7.3"
 
-core-ktx = "1.10.1"
+core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
@@ -57,7 +57,6 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 
-
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 moshi-retrofit = { module = "com.squareup.retrofit2:converter-moshi", version = "2.9.0" }
@@ -71,11 +70,11 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 
-
 slack-eithernet = { module = "com.slack.eithernet:eithernet", version = "1.2.1" }
 
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-ksp = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.0.0" }
 
 kotlin-testing-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.7.3" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version = "1.9.0" }
@@ -101,7 +100,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [bundles]
-compose = ["compose-foundation", "compose-foundation-layout", "compose-iconsExtended", "compose-material-windowSizeClass", "compose-material", "compose-runtime", "compose-ui-util", "compose-coil", "activity-compose", "compose-navigation"]
+compose = ["compose-foundation", "compose-foundation-layout", "compose-iconsExtended", "compose-material-windowSizeClass", "compose-material", "compose-runtime", "compose-ui-util", "compose-coil", "activity-compose", "compose-navigation", "compose-lifecycle"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

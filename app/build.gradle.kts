@@ -53,4 +53,8 @@ dependencies {
     implementation(libs.accompanist.ui.controller)
     implementation(libs.splash.screen)
     implementation(project(":core:design"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:networking"))
+    implementation(project(":core:data"))
+    implementation(project(":features:products"))
 }

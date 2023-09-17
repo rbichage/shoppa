@@ -13,8 +13,11 @@ import javax.inject.Singleton
 import com.shoppa.core.networking.BuildConfig
 import com.slack.eithernet.ApiResultCallAdapterFactory
 import com.slack.eithernet.ApiResultConverterFactory
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Qualifier
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -27,6 +30,10 @@ object NetworkModule {
         .Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
+
+    @Provides
+    @IODispatcher
+    fun provideIODispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Singleton
     @Provides
@@ -57,3 +64,7 @@ object NetworkModule {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(ApiResultCallAdapterFactory)
 }
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class IODispatcher
