@@ -1,8 +1,12 @@
 package com.shoppa.features.products.di
 
-import com.shoppa.features.products.data.ProductsApi
-import com.shoppa.features.products.data.ProductsRepository
-import com.shoppa.features.products.data.ProductsRepositoryImpl
+import com.shoppa.features.products.data.api.ProductsApi
+import com.shoppa.features.products.data.repository.ProductsRepository
+import com.shoppa.features.products.data.repository.ProductsRepositoryImpl
+import com.shoppa.features.products.domain.mapper.ProductsMapper
+import com.shoppa.features.products.domain.mapper.ProductsMapperImpl
+import com.shoppa.features.products.navigation.ProductsNavigation
+import com.shoppa.features.products.navigation.ProductsNavigationImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,4 +34,16 @@ object ProductsModule {
     ): ProductsRepository {
         return productsRepositoryImpl
     }
+
+    @Singleton
+    @Provides
+    fun provideProductsMapper(
+        productsMapperImpl: ProductsMapperImpl
+    ): ProductsMapper = productsMapperImpl
+
+    @Singleton
+    @Provides
+    fun provideProductsNavigation(
+        productsNavigationImpl: ProductsNavigationImpl
+    ): ProductsNavigation = productsNavigationImpl
 }

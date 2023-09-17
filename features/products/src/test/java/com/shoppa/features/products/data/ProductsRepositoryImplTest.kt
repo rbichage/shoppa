@@ -1,5 +1,8 @@
 package com.shoppa.features.products.data
 
+import com.shoppa.features.products.data.api.ProductsApi
+import com.shoppa.features.products.data.repository.ProductsRepository
+import com.shoppa.features.products.data.repository.ProductsRepositoryImpl
 import com.shoppa.features.products.util.productsJson
 import com.slack.eithernet.ApiResult
 import com.squareup.moshi.Moshi

@@ -14,12 +14,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.shoppa.app.ui.navigation.NavigationProvider
+import com.shoppa.app.ui.navigation.ShoppaNavHost
 import com.shoppa.core.design.theme.ShoppaTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var navigationProvider: NavigationProvider
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navHostController = rememberNavController()
             ShoppaTheme {
                 Surface(
                     modifier = Modifier
@@ -27,31 +37,12 @@ class MainActivity : ComponentActivity() {
                         .systemBarsPadding(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    ShoppaNavHost(
+                        navHostController = navHostController,
+                        navigationProvider = navigationProvider
+                    )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-   Column(
-       modifier = modifier.fillMaxSize(),
-       verticalArrangement = Arrangement.Center,
-       horizontalAlignment = Alignment.CenterHorizontally
-   ) {
-       Text(
-           text = "Hello $name!",
-           modifier = modifier
-       )
-   }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ShoppaTheme {
-        Greeting("Android")
     }
 }

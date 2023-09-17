@@ -1,10 +1,9 @@
 package com.shoppa.core.database.data
 
-import com.shoppa.core.data.model.Order
+import com.shoppa.core.data.model.Product
 import com.shoppa.core.database.dao.CartDao
 import com.shoppa.core.database.model.CartEntity
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 interface CartRepository {
@@ -38,32 +37,4 @@ class  CartRepositoryImpl @Inject internal  constructor(
         cartDao.deleteAllCartItems()
     }
 
-}
-
-fun Order.toCartItem(selectedQuantity: Int = 0): CartEntity {
-    return CartEntity(
-        productId = id,
-        productName = name,
-        description = description,
-        imageUrl = image,
-        price = price,
-        currencyCode = currencyCode,
-        maxQuantity = quantity,
-        selectedQuantity = selectedQuantity,
-        currencySymbol = currencySymbol
-    )
-}
-
-fun CartEntity.toOrder(): Order {
-    return Order(
-        id = productId,
-        name = productName,
-        description = description,
-        image = imageUrl,
-        price = price,
-        currencyCode = currencyCode,
-        quantity = selectedQuantity,
-        currencySymbol = currencySymbol,
-        status = ""
-    )
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="view_cart">View Cart</string>
+    <string name="tap_to_search">Tap to search</string>
+    <string name="retry">Retry</string>
+    <string name="network_error_message">We could not complete your request, please try again</string>
+    <string name="your_cart">Your cart</string>
+    <string name="quantity">Quantity: %1$s</string>
+    <string name="update">Update</string>
+</resources>
