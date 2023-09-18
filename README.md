@@ -34,6 +34,9 @@ Display the following:
 To setup and run the project, run it
 on [Android Studio Giraffe](https://developer.android.com/studio) or a newer Android Version
 
+## Artifacts
+- The relevant APK and app bundle can be found on the latest successful action from the [GitHub Actions](https://github.com/rbichage/shoppa/actions) tab
+
 ## Architecture
 
 The Shoppa app follows architecture as described on
@@ -69,7 +72,7 @@ separate core module such as `:core-common`
 ## Libraries and tools
 
 Some of the libraries and tools used in the project include
-
+- [Github Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) Managing CI and pipelines
 - [Kotlin](https://developer.android.com/kotlin?gclid=Cj0KCQjwoK2mBhDzARIsADGbjeoMVO2Ww0zuUmtQGg8DUqVSPDWhBPGC8vGmtx1GOrh6ZpfoOFIEbKcaAoH1EALw_wcB&gclsrc=aw.ds)
   as the main language (and for testing)
 - [JetPack Compose](https://developer.android.com/jetpack/compose?gclid=Cj0KCQjwoK2mBhDzARIsADGbjepwqpW6sXqc0B5GpGglo6zv7XivC252sRc1vbv5HR9Ao--GzmRNKf4aAqPFEALw_wcB&gclsrc=aw.ds)

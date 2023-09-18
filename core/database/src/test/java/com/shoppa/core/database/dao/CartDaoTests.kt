@@ -93,7 +93,7 @@ class CartDaoTests {
         )
 
         cartDao.insertCartItems(listOf(item))
-        cartDao.updateCartItem(updateItem)
+        val updated = cartDao.updateCartItem(updateItem)
 
         cartDao.getAllCartItems().test {
             val list = awaitItem()
