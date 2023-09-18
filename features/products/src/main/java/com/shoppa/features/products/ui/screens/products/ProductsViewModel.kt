@@ -7,7 +7,6 @@ import com.shoppa.core.database.data.CartRepository
 import com.shoppa.core.networking.di.IODispatcher
 import com.shoppa.core.networking.util.BaseResult
 import com.shoppa.features.products.domain.usecase.GetProductsUseCase
-import com.shoppa.features.products.ui.util.toCartItem
 import com.shoppa.features.products.ui.util.toProduct
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -20,12 +19,11 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
     private val getProductsUseCase: GetProductsUseCase,
-    private val cartRepository: CartRepository,
+    cartRepository: CartRepository,
     @IODispatcher private val coroutineDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
@@ -57,12 +55,6 @@ class ProductsViewModel @Inject constructor(
 
     fun getProducts() {
         getProductsEvent.trySend(Unit)
-    }
-    fun addToCart(product: Product) {
-        viewModelScope.launch(coroutineDispatcher) {
-            val entity = product.toCartItem()
-            cartRepository.insertCartItem(listOf(entity))
-        }
     }
 
     private fun mapResultToUiState(

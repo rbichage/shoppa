@@ -14,7 +14,7 @@ interface ProductsMapper {
     ): BaseResult<GetProductsUseCase.Products, GetProductsUseCase.Errors>
 }
 
-class ProductsMapperImpl @Inject constructor() : ProductsMapper {
+class ProductsMapperImpl @Inject internal constructor() : ProductsMapper {
     override fun mapResult(
         result: ApiResult<List<ProductDTO>, ErrorResultResponse>
     ): BaseResult<GetProductsUseCase.Products, GetProductsUseCase.Errors> {
